@@ -1,0 +1,7 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { publishedPosts } from '../../lib/posts';
+const posts = await publishedPosts();
+---
+<Base title="모든 글"><header class="page-heading"><div class="eyebrow">THE ARCHIVE</div><h1>차곡차곡 쌓이는 기록<span class="brand-dot">.</span></h1><p>개발과 AI, 그리고 배우는 과정에서 발견한 것들. 총 {posts.length}편의 글이 있습니다.</p></header><PostList posts={posts} /></Base>

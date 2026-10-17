@@ -1,0 +1,7 @@
+---
+import Base from '../../layouts/Base.astro';
+import { publishedPosts, tagUrl } from '../../lib/posts';
+const posts = await publishedPosts();
+const tags = [...new Set(posts.flatMap(post => post.data.tags))].sort();
+---
+<Base title="태그"><header class="page-heading"><div class="eyebrow">CONNECTED IDEAS</div><h1>관심사의 지도<span class="brand-dot">.</span></h1><p>궁금한 주제를 따라 기록을 살펴보세요.</p></header><div class="tag-grid">{tags.map(tag => <a href={tagUrl(tag)}><span>#{tag}</span><span class="muted">{posts.filter(post => post.data.tags.includes(tag)).length}편 ↗</span></a>)}</div></Base>

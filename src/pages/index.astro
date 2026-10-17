@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import { publishedPosts, tagUrl } from '../lib/posts';
+const posts = await publishedPosts();
+const tags = [...new Set(posts.flatMap(post => post.data.tags))].sort();
+---
+<Base>
+  <section class="hero">
+    <div class="hero-copy"><div class="eyebrow"><span class="status-dot"></span> HELLO, WORLD. I’M JAKE.</div><h1>배움의 조각을 모아,<br /><span>나만의 언어로.</span></h1><p>개발과 AI를 공부하며 남기는 기록.<br />작은 궁금증에서 시작해, 직접 이해한 것들을 씁니다.</p><a class="primary-link" href="/posts/">기록 둘러보기 <span aria-hidden="true">↗</span></a></div>
+    <div class="terminal" aria-label="블로그를 소개하는 코드 일러스트"><div class="terminal-bar"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><span>hello.py</span><span class="terminal-language">Python</span></div><pre><code><span class="code-comment"># A little better, every day.</span>
+<span class="code-purple">class</span> <span class="code-teal">DevLog</span>:
+    author = <span class="code-string">"Jake"</span>
+    interests = [
+        <span class="code-string">"Development"</span>,
+        <span class="code-string">"Artificial Intelligence"</span>,
+        <span class="code-string">"Things I learn"</span>,
+    ]
+
+    <span class="code-purple">def</span> <span class="code-teal">grow</span>(self):
+        <span class="code-purple">return</span> learn() + build() + share()</code></pre><div class="terminal-bottom"><span class="status-dot"></span> learning in progress<span class="cursor" aria-hidden="true">▌</span></div></div>
+  </section>
+  <section class="home-feed" aria-labelledby="latest"><div class="feed-main"><div class="section-heading"><h2 id="latest"><span class="section-slash">/</span> 최근 기록 <span class="count">{posts.length}</span></h2><a href="/posts/">모든 글 보기 <span aria-hidden="true">→</span></a></div><PostList posts={posts.slice(0, 5)} /></div><aside class="home-sidebar"><div class="sidebar-label">EXPLORE BY TAG</div><h2>관심사의 지도</h2><div class="tags sidebar-tags">{tags.map(tag => <a href={tagUrl(tag)}>#{tag}<span>{posts.filter(post => post.data.tags.includes(tag)).length}</span></a>)}</div><div class="sidebar-note"><span aria-hidden="true">✳</span><p>완벽한 정답보다는<br />이해해 가는 과정을 기록합니다.</p><a href="/about/">이 블로그에 대해 →</a></div></aside></section>
+</Base>

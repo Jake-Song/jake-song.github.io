@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { publishedPosts } from '../../lib/posts';
+export async function getStaticPaths() {
+  const posts = await publishedPosts();
+  return [...new Set(posts.flatMap(post => post.data.tags))].map(tag => ({ params: { tag }, props: { tag, posts: posts.filter(post => post.data.tags.includes(tag)) } }));
+}
+const { tag, posts } = Astro.props;
+---
+<Base title={`#${tag}`}><header class="page-heading"><a class="back-link" href="/tags/">← 모든 태그</a><h1>#{tag}<span class="brand-dot">.</span></h1><p>이 주제로 남긴 {posts.length}편의 기록</p></header><PostList posts={posts} /></Base>

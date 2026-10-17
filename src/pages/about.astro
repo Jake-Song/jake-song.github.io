@@ -1,0 +1,5 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../site';
+---
+<Base title="소개"><header class="page-heading"><div class="eyebrow">BEHIND THE NOTES</div><h1>안녕하세요, Jake입니다<span class="brand-dot">.</span></h1><p>{site.description}</p></header><article class="prose about-prose"><h2>배운 것을, 내 언어로</h2><p>개발과 AI를 공부하면서 마주치는 질문과 배움을 이곳에 모읍니다. 읽고 지나가는 데서 멈추지 않고, 직접 해 보고 설명할 수 있는 기록을 남기려 합니다.</p><h2>이곳에 담고 싶은 것</h2><ul><li>코드를 작성하며 알게 된 원리와 해결 과정</li><li>AI를 공부하며 정리한 개념과 궁금증</li><li>작게 만들어 보고 다시 생각해 본 것들</li></ul><h2>함께 연결되기</h2><p>코드는 GitHub에서, 새로운 글은 RSS로 만날 수 있습니다.</p><div class="about-links"><a href={site.github}>GitHub ↗</a><a href="/rss.xml">RSS 구독 ↗</a></div></article></Base>
